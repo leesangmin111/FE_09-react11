@@ -1,0 +1,235 @@
+// 색상 변수 정의
+$primary-bg-color: #181818;
+$card-bg-color: #2c2c2c;
+$text-color: #ffffff;
+$hover-bg-color: #3a3a3a;
+$header-bg-color: #2c2c2c;
+$button-bg-color: #4a90e2;
+
+$form-bg-color: #2c2c2c;
+$form-input-bg-color: #181818;
+$form-btn-bg-color: #4a90e2;
+
+$navbar-bg-color: #2c2c2c;
+$navbar-item-color: #ffffff;
+
+body {
+    background-color: $primary-bg-color;
+    color: $text-color;
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    background-color: $navbar-bg-color;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    .logo {
+        font-size: 1.5em;
+        color: $navbar-item-color;
+        text-decoration: none;
+        margin-right: 20px;
+    }
+
+    .nav-content {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        justify-content: flex-start;
+
+        .search-input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 400px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            padding: 10px;
+            background-color: $button-bg-color;
+            color: $text-color;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .auth-buttons {
+            display: flex;
+
+            .login-button,
+            .signup-button {
+                padding: 10px;
+                color: $text-color;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-left: 10px;
+
+                &.signup-button {
+                    background-color: #5cb85c;
+                }
+
+                &:hover {
+                    background-color: darken($button-bg-color, 10%);
+                }
+
+                &.signup-button:hover {
+                    background-color: darken(#5cb85c, 10%);
+                }
+            }
+        }
+    }
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: $card-bg-color;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: background-color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $hover-bg-color;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .info {
+        padding: 10px;
+
+        .title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .rating {
+            color: #f39c12;
+        }
+    }
+}
+
+.login-container,
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+
+    .form {
+        background-color: $form-bg-color;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        width: 300px;
+
+        h2 {
+            color: $text-color;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: $form-input-bg-color;
+            color: $text-color;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: $form-btn-bg-color;
+            color: $text-color;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: darken($form-btn-bg-color, 10%);
+            }
+        }
+    }
+}
+
+.content {
+    padding: 20px;
+    background-color: #121212;
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    .movie-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
+
+.movie-detail {
+    display: flex;
+    margin: 20px;
+    padding: 20px;
+    background-color: $card-bg-color;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    width: calc(100% - 40px);
+
+    .poster-container {
+        flex: 1;
+        margin-right: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .poster {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+    }
+
+    .movie-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .genres {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .overview {
+            font-size: 1em;
+            line-height: 1.5;
+            margin-top: auto;
+        }
+    }
+}
