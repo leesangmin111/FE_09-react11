@@ -1,20 +1,20 @@
 // 색상 변수 정의
-$primary-bg-color: #181818;
-$card-bg-color: #2c2c2c;
+$primary-bg-color: #181818; // 회색 배경
+$card-bg-color: #2c2c2c; // 카드 배경
 $text-color: #ffffff;
-$hover-bg-color: #3a3a3a;
-$header-bg-color: #2c2c2c;
-$button-bg-color: #4a90e2;
+$hover-bg-color: #3a3a3a; // 카드 호버 색상
+$header-bg-color: #2c2c2c; // 헤더 배경
+$button-bg-color: #4a90e2; // 버튼 배경
 
-$form-bg-color: #2c2c2c;
-$form-input-bg-color: #181818;
-$form-btn-bg-color: #4a90e2;
+$form-bg-color: #2c2c2c; // 폼 배경
+$form-input-bg-color: #181818; // 폼 입력 배경
+$form-btn-bg-color: #4a90e2; // 폼 버튼 배경
 
-$navbar-bg-color: #2c2c2c;
-$navbar-item-color: #ffffff;
+$navbar-bg-color: #2c2c2c; // Navbar 배경
+$navbar-item-color: #ffffff; // Navbar 아이템 색상
 
 body {
-    background-color: $primary-bg-color;
+    background-color: $primary-bg-color; // 회색 배경
     color: $text-color;
     font-family: Arial, sans-serif;
 }
@@ -24,27 +24,32 @@ nav {
     padding: 10px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap; // 줄 바꿈 허용
 
     .logo {
         font-size: 1.5em;
         color: $navbar-item-color;
         text-decoration: none;
         margin-right: 20px;
+        flex: 1; // 로고가 공간을 차지하도록 설정
     }
 
     .nav-content {
         display: flex;
         align-items: center;
         flex-grow: 1;
-        justify-content: flex-start;
+        justify-content: space-between; // 버튼 간격 조정
+        width: 100%; // 전체 너비 사용
 
         .search-input {
             padding: 10px;
             border: none;
             border-radius: 5px;
-            width: 400px;
-            font-size: 16px;
+            width: 70%; // 검색창 너비 조정
+            font-size: 14px; // 작은 화면에 맞게 글자 크기 조정
             margin-right: 10px;
+            background-color: $form-input-bg-color;
+            color: $text-color;
         }
 
         .search-button {
@@ -54,31 +59,37 @@ nav {
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-right: 10px;
+
+            &:hover {
+                background-color: darken($button-bg-color, 10%);
+            }
         }
 
-        .auth-buttons {
+        .auth-links {
             display: flex;
+            gap: 10px; // 버튼 간격 조정
+            margin-left: auto; // 오른쪽으로 정렬
 
-            .login-button,
-            .signup-button {
-                padding: 10px;
-                color: $text-color;
+            .auth-button {
+                background-color: $button-bg-color; // 기본 버튼 배경색
+                color: $text-color; // 기본 글자색
                 border: none;
+                padding: 10px 15px; // 버튼 패딩 조정
                 border-radius: 5px;
                 cursor: pointer;
-                margin-left: 10px;
-
-                &.signup-button {
-                    background-color: #5cb85c;
-                }
+                transition: background-color 0.3s;
 
                 &:hover {
                     background-color: darken($button-bg-color, 10%);
                 }
+            }
 
-                &.signup-button:hover {
-                    background-color: darken(#5cb85c, 10%);
+            .logout-button { // 로그아웃 버튼 스타일
+                background-color: #d9534f; // 로그아웃 버튼의 배경색
+                color: #ffffff; // 로그아웃 버튼의 글자색
+
+                &:hover {
+                    background-color: darken(#d9534f, 10%); // 로그아웃 버튼 호버 색상
                 }
             }
         }
@@ -87,9 +98,9 @@ nav {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); // 작은 화면에서도 카드 크기 조정
+    gap: 10px; // 카드 간 간격 조정
+    padding: 10px; // 전체 패딩 조정
 }
 
 .card {
@@ -112,33 +123,37 @@ nav {
         padding: 10px;
 
         .title {
-            font-size: 1.2em;
+            font-size: 1em; // 작은 화면에 맞게 글자 크기 조정
             font-weight: bold;
+            color: $text-color;
         }
 
         .rating {
-            color: #f39c12;
+            font-size: 1em; // 작은 화면에 맞게 글자 크기 조정
+            color: #f39c12; // 별 색상
         }
     }
 }
 
-.login-container,
-.signup-container {
+// 로그인 및 회원가입 페이지 스타일
+.form-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 100px); // 화면 높이 조정
 
     .form {
         background-color: $form-bg-color;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        width: 300px;
+        width: 90%; // 모바일에서 폼 너비 조정
+        max-width: 350px; // 최대 너비 조정
 
         h2 {
             color: $text-color;
             text-align: center;
+            font-size: 1.5em; // 제목 크기 조정
         }
 
         input {
@@ -149,6 +164,10 @@ nav {
             border-radius: 5px;
             background-color: $form-input-bg-color;
             color: $text-color;
+
+            &::placeholder {
+                color: lighten($text-color, 0.5); // 플레이스홀더 색상
+            }
         }
 
         button {
@@ -168,68 +187,96 @@ nav {
     }
 }
 
-.content {
-    padding: 20px;
-    background-color: #121212;
-
-    h2 {
-        margin-bottom: 20px;
-    }
-
-    .movie-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-}
-
+// 영화 디테일 페이지 스타일
 .movie-detail {
     display: flex;
-    margin: 20px;
-    padding: 20px;
+    margin: 10px; // 마진 조정
+    padding: 10px; // 패딩 조정
     background-color: $card-bg-color;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    width: calc(100% - 40px);
+    width: calc(100% - 20px); // 최대 너비 조정
 
     .poster-container {
         flex: 1;
-        margin-right: 20px;
+        margin-right: 10px; // 마진 조정
         display: flex;
         justify-content: center;
         align-items: center;
 
         .poster {
-            max-width: 100%;
+            max-width: 150px; // 포스터 너비 조정
             border-radius: 8px;
         }
     }
 
     .movie-info {
-        flex: 1;
+        flex: 2; // 정보 영역이 더 넓게 차지
         display: flex;
         flex-direction: column;
 
-        .title {
-            font-size: 2em;
-            font-weight: bold;
+        .title-and-rating {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 10px;
-        }
 
-        .rating {
-            font-size: 1.2em;
-            margin-bottom: 10px;
+            .title {
+                font-size: 1.5em; // 제목 크기 조정
+                font-weight: bold;
+                color: $text-color;
+            }
+
+            .rating {
+                font-size: 1em; // 작은 화면에 맞게 글자 크기 조정
+                color: #f39c12; // 별 색상
+            }
         }
 
         .genres {
-            font-size: 1em;
+            font-size: 0.9em; // 작은 화면에 맞게 글자 크기 조정
             margin-bottom: 10px;
+            color: $text-color;
         }
 
         .overview {
-            font-size: 1em;
+            font-size: 0.9em; // 작은 화면에 맞게 글자 크기 조정
             line-height: 1.5;
             margin-top: auto;
+            color: $text-color;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
         }
     }
 }
+
+// 반응형 디자인
+@media (max-width: 480px) { // iPhone SE 및 작은 화면을 위한 미디어 쿼리
+    nav {
+        flex-direction: column; // 모바일에서 세로 방향으로 배치
+        align-items: flex-start;
+
+        .nav-content {
+            width: 100%;
+            margin-top: 10px;
+
+            .search-input {
+                width: calc(100% - 100px); // 검색창 너비 조정
+                margin-right: 0; // 여백 제거
+            }
+        }
+    }
+
+    .form-container {
+        height: auto; // 모바일에서 높이 자동 조정
+        padding: 10px;
+
+        .form {
+            width: 90%; // 모바일에서 폼 너비 조정
+        }
+    }
+
+        .container {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); // 작은 화면에서도 카드 크기 조정
+        }
+    }

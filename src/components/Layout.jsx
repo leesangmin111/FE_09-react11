@@ -1,13 +1,13 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar"; 
 import '../styles/App.scss';
 
-const Layout = () => {
+const Layout = ({ isLoggedIn, onLogout }) => {
   return (
     <div>
       <header>
-        <Navbar /> 
+        <Navbar isLoggedIn={isLoggedIn} onLogout={onLogout} /> 
       </header>
       <main>
         <Outlet />
