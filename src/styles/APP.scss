@@ -1,282 +1,331 @@
 // 색상 변수 정의
-$primary-bg-color: #181818; // 회색 배경
-$card-bg-color: #2c2c2c; // 카드 배경
-$text-color: #ffffff;
-$hover-bg-color: #3a3a3a; // 카드 호버 색상
-$header-bg-color: #2c2c2c; // 헤더 배경
+$dark-bg-color: #181818; // 다크 모드 배경
+$light-bg-color: #ffffff; // 라이트 모드 배경
+$text-color: #e0e0e0; // 다크 모드 글자색 (밝은 회색)
+$light-text-color: #333333; // 라이트 모드 글자색 (짙은 회색)
 $button-bg-color: #4a90e2; // 버튼 배경
 
-$form-bg-color: #2c2c2c; // 폼 배경
-$form-input-bg-color: #181818; // 폼 입력 배경
-$form-btn-bg-color: #4a90e2; // 폼 버튼 배경
-
-$navbar-bg-color: #2c2c2c; // Navbar 배경
-$navbar-item-color: #ffffff; // Navbar 아이템 색상
-
 body {
-    background-color: $primary-bg-color; // 회색 배경
-    color: $text-color;
+    background-color: $dark-bg-color; 
+    color: $text-color; 
     font-family: Arial, sans-serif;
+
+    &.light-mode {
+        background-color: $light-bg-color; 
+        color: $light-text-color; 
+    }
 }
 
-nav {
-    background-color: $navbar-bg-color;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap; // 줄 바꿈 허용
+.navbar {
+    background-color: $dark-bg-color; 
 
-    .logo {
-        font-size: 1.5em;
-        color: $navbar-item-color;
-        text-decoration: none;
-        margin-right: 20px;
-        flex: 1; // 로고가 공간을 차지하도록 설정
+    &.light-mode {
+        background-color: $light-bg-color; 
     }
 
     .nav-content {
         display: flex;
         align-items: center;
-        flex-grow: 1;
-        justify-content: space-between; // 버튼 간격 조정
-        width: 100%; // 전체 너비 사용
+        justify-content: space-between; 
+        padding: 10px;
 
-        .search-input {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            width: 70%; // 검색창 너비 조정
-            font-size: 14px; // 작은 화면에 맞게 글자 크기 조정
-            margin-right: 10px;
-            background-color: $form-input-bg-color;
+        .logo {
+            font-size: 1.5em;
             color: $text-color;
+
+            &.light-mode {
+                color: $light-text-color;
+            }
         }
 
-        .search-button {
-            padding: 10px;
-            background-color: $button-bg-color;
-            color: $text-color;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .search-form {
+            display: flex;
+            align-items: center;
+            flex-grow: 1; 
+            justify-content: center; 
 
-            &:hover {
-                background-color: darken($button-bg-color, 10%);
+            .search-input {
+                padding: 10px;
+                border: 2px solid #dca3e0;
+                border-radius: 5px;
+                width: 300px; 
+                background-color: $dark-bg-color;
+                color: $text-color;
+
+                &.light-mode {
+                    background-color: $light-bg-color;
+                    color: $light-text-color;
+                }
+
+                &::placeholder {
+                    color: lighten($text-color, 0.5);
+                }
+            }
+
+            .search-button {
+                padding: 10px;
+                background-color: $button-bg-color;
+                color: $text-color;
+                border: none;
+                border-radius: 5px;
+                margin-left: 10px; 
+
+                &.light-mode {
+                    background-color: darken($button-bg-color, 10%);
+                    color: $light-text-color;
+                }
+
+                &:hover {
+                    background-color: darken($button-bg-color, 10%);
+                }
             }
         }
 
         .auth-links {
             display: flex;
-            gap: 10px; // 버튼 간격 조정
-            margin-left: auto; // 오른쪽으로 정렬
+            gap: 10px;
 
             .auth-button {
-                background-color: $button-bg-color; // 기본 버튼 배경색
-                color: $text-color; // 기본 글자색
+                background-color: $button-bg-color;
+                color: $text-color;
+                padding: 10px;
                 border: none;
-                padding: 10px 15px; // 버튼 패딩 조정
                 border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s;
+
+                &.light-mode {
+                    background-color: darken($button-bg-color, 10%);
+                    color: $light-text-color;
+                }
 
                 &:hover {
                     background-color: darken($button-bg-color, 10%);
                 }
             }
 
-            .logout-button { // 로그아웃 버튼 스타일
-                background-color: #d9534f; // 로그아웃 버튼의 배경색
-                color: #ffffff; // 로그아웃 버튼의 글자색
+            .logout-button {
+                background-color: #d9534f;
+                color: $text-color;
+
+                &.light-mode {
+                    color: $light-text-color;
+                }
 
                 &:hover {
-                    background-color: darken(#d9534f, 10%); // 로그아웃 버튼 호버 색상
+                    background-color: darken(#d9534f, 10%);
+                }
+            }
+
+            .toggle-button {
+                background-color: $button-bg-color;
+                color: $text-color;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+
+                &.light-mode {
+                    background-color: darken($button-bg-color, 10%);
+                    color: $light-text-color;
+                }
+
+                &:hover {
+                    background-color: darken($button-bg-color, 10%);
                 }
             }
         }
     }
 }
 
-.container {
+.movie-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); // 작은 화면에서도 카드 크기 조정
-    gap: 10px; // 카드 간 간격 조정
-    padding: 10px; // 전체 패딩 조정
-}
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 10px;
 
-.card {
-    background-color: $card-bg-color;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: background-color 0.3s;
-    cursor: pointer;
-
-    &:hover {
-        background-color: $hover-bg-color;
+    &.dark-mode {
+        background-color: $dark-bg-color;
+        color: $text-color;
     }
 
-    img {
-        width: 100%;
-        height: auto;
+    &.light-mode {
+        background-color: $light-bg-color;
+        color: $light-text-color;
     }
 
-    .info {
+    .movie-card {
+        background-color: inherit; // 부모의 배경색을 inherit
+        border-radius: 10px;
+        overflow: hidden;
         padding: 10px;
 
-        .title {
-            font-size: 1em; // 작은 화면에 맞게 글자 크기 조정
-            font-weight: bold;
-            color: $text-color;
-        }
-
-        .rating {
-            font-size: 1em; // 작은 화면에 맞게 글자 크기 조정
-            color: #f39c12; // 별 색상
-        }
-    }
-}
-
-// 로그인 및 회원가입 페이지 스타일
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 100px); // 화면 높이 조정
-
-    .form {
-        background-color: $form-bg-color;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        width: 90%; // 모바일에서 폼 너비 조정
-        max-width: 350px; // 최대 너비 조정
-
-        h2 {
-            color: $text-color;
-            text-align: center;
-            font-size: 1.5em; // 제목 크기 조정
-        }
-
-        input {
+        img {
             width: 100%;
+            height: auto;
+        }
+
+        .info {
             padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            background-color: $form-input-bg-color;
-            color: $text-color;
-
-            &::placeholder {
-                color: lighten($text-color, 0.5); // 플레이스홀더 색상
-            }
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: $form-btn-bg-color;
-            color: $text-color;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-
-            &:hover {
-                background-color: darken($form-btn-bg-color, 10%);
-            }
-        }
-    }
-}
-
-// 영화 디테일 페이지 스타일
-.movie-detail {
-    display: flex;
-    margin: 10px; // 마진 조정
-    padding: 10px; // 패딩 조정
-    background-color: $card-bg-color;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    width: calc(100% - 20px); // 최대 너비 조정
-
-    .poster-container {
-        flex: 1;
-        margin-right: 10px; // 마진 조정
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .poster {
-            max-width: 150px; // 포스터 너비 조정
-            border-radius: 8px;
-        }
-    }
-
-    .movie-info {
-        flex: 2; // 정보 영역이 더 넓게 차지
-        display: flex;
-        flex-direction: column;
-
-        .title-and-rating {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
 
             .title {
-                font-size: 1.5em; // 제목 크기 조정
+                font-size: 1em;
                 font-weight: bold;
-                color: $text-color;
+
+                &.dark-mode {
+                    color: $text-color; // 다크 모드 글자색
+                }
+
+                &.light-mode {
+                    color: $light-text-color; // 라이트 모드 글자색
+                }
             }
 
             .rating {
-                font-size: 1em; // 작은 화면에 맞게 글자 크기 조정
-                color: #f39c12; // 별 색상
+                font-size: 1em;
+                color: #f39c12; // 평점 색상
+
+                &.dark-mode {
+                    color: $text-color; // 다크 모드 글자색
+                }
+
+                &.light-mode {
+                    color: $light-text-color; // 라이트 모드 글자색
+                }
             }
-        }
-
-        .genres {
-            font-size: 0.9em; // 작은 화면에 맞게 글자 크기 조정
-            margin-bottom: 10px;
-            color: $text-color;
-        }
-
-        .overview {
-            font-size: 0.9em; // 작은 화면에 맞게 글자 크기 조정
-            line-height: 1.5;
-            margin-top: auto;
-            color: $text-color;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
         }
     }
 }
 
-// 반응형 디자인
-@media (max-width: 480px) { // iPhone SE 및 작은 화면을 위한 미디어 쿼리
-    nav {
-        flex-direction: column; // 모바일에서 세로 방향으로 배치
-        align-items: flex-start;
+// 로그인 및 회원가입 스타일
+.auth-container {
+    max-width: 400px;
+    margin: auto; /* 좌우 여백을 자동으로 설정하여 중앙 정렬 */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    
+    /* Flexbox를 사용하여 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 세로 중앙 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+    height: 100vh; /* 뷰포트 높이에 맞춰서 중앙 정렬 */
 
-        .nav-content {
-            width: 100%;
-            margin-top: 10px;
+    &.dark-mode {
+        background-color: $dark-bg-color;
+        color: $text-color;
+    }
 
-            .search-input {
-                width: calc(100% - 100px); // 검색창 너비 조정
-                margin-right: 0; // 여백 제거
+    &.light-mode {
+        background-color: $light-bg-color;
+        color: $light-text-color;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+
+        &.dark-mode {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+        }
+
+        &.light-mode {
+            background-color: #f9f9f9;
+            color: #000;
+        }
+    }
+
+    .submit-button {
+        width: 100%;
+        padding: 10px;
+        background-color: $button-bg-color;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #357ab8;
+        }
+
+        &.dark-mode {
+            background-color: #0056b3;
+        }
+
+        &.light-mode {
+            background-color: $button-bg-color;
+        }
+    }
+
+    .auth-link {
+        color: #6f42c1;
+    }
+}
+
+// 영화 상세 페이지 스타일
+.movie-detail {
+    display: flex;
+    justify-content: center; // 중앙 정렬
+    padding: 20px;
+    background-color: $dark-bg-color; // 기본 배경 색상
+
+    &.light-mode {
+        background-color: $light-bg-color; // 라이트 모드 배경
+    }
+
+    .detail-container {
+        display: flex;
+        background-color: #2c3e50; // 카드 배경 색상
+        border-radius: 10px;
+        overflow: hidden; // 자식 요소가 카드 영역을 넘지 않도록
+        width: 100%;
+        max-width: 800px; // 최대 너비 설정
+
+        .poster-container {
+            flex: 1; // 포스터가 차지하는 비율
+            background-color: #34495e; // 포스터 배경 색상
+            padding: 10px;
+
+            .poster {
+                width: 100%; // 포스터 너비 100%
+                height: auto; // 비율 유지
+            }
+        }
+
+        .info-container {
+            flex: 1; // 정보가 차지하는 비율
+            padding: 20px;
+            display: flex;
+            flex-direction: column; // 세로 방향으로 정렬
+            justify-content: space-between; // 공간을 균등하게 배분
+            color: $text-color; // 글자 색상
+
+            .title {
+                font-size: 24px;
+                margin-bottom: 10px; // 제목과 평점 사이의 간격
+            }
+
+            .rating {
+                margin-bottom: 10px; // 평점과 장르 사이의 간격
+            }
+
+            .genres {
+                margin-bottom: 10px; // 장르와 줄거리 사이의 간격
+            }
+
+            .overview {
+                background-color: #34495e; // 줄거리 배경 색상
+                padding: 10px;
+                border-radius: 5px;
             }
         }
     }
-
-    .form-container {
-        height: auto; // 모바일에서 높이 자동 조정
-        padding: 10px;
-
-        .form {
-            width: 90%; // 모바일에서 폼 너비 조정
-        }
-    }
-
-        .container {
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); // 작은 화면에서도 카드 크기 조정
-        }
-    }
+}

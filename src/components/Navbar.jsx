@@ -1,51 +1,46 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import '../styles/App.scss'; 
+import '../styles/App.scss';
 
-const Navbar = ({ isLoggedIn, onLogout }) => {
+const Navbar = ({ isLoggedIn, onLogout, toggleDarkMode, isDarkMode }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // useNavigate 훅을 가져옵니다.
 
-  const handleSearch = () => {
-    if (searchTerm.trim()) {
-      navigate(`/home?query=${encodeURIComponent(searchTerm.trim())}`);
-      setSearchTerm(""); // 검색 후 입력 필드 초기화
-    }
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
-
-  const handleLogout = () => {
-    onLogout(); // 부모 컴포넌트에서 로그아웃 처리
-    navigate('/'); // 홈으로 리디렉션
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/?query=${searchTerm}`); // 검색어를 쿼리 파라미터로 전달
   };
 
   return (
-    <nav>
+    <nav className={`navbar ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <div className="nav-content">
-        <Link to="/" className="logo">OZ무비</Link>
-        <input
-          type="text"
-          className="search-input"
-          placeholder="영화 제목 검색..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyPress={handleKeyPress}
-        />
-        <button className="search-button" onClick={handleSearch}>검색</button>
+        <Link to="/" className={`logo ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>공주영화관</Link>
+
+        <div className="search-form">
+          <form onSubmit={handleSearch}>
+            <input 
+              type="text" 
+              className={`search-input ${isDarkMode ? 'dark-mode' : 'light-mode'}`} 
+              placeholder="영화 제목 검색..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)} // 입력값 상태 업데이트
+            />
+            <button className={`search-button ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>검색</button>
+          </form>
+        </div>
+
         <div className="auth-links">
           {isLoggedIn ? (
-            <button className="auth-button logout-button" onClick={handleLogout}>로그아웃</button>
+            <button className="auth-button logout-button" onClick={onLogout}>로그아웃</button>
           ) : (
             <>
-              <Link className="auth-button" to="/login">로그인</Link>
-              <Link className="auth-button" to="/signup">회원가입</Link>
+              <Link className={`auth-button ${isDarkMode ? 'dark-mode' : 'light-mode'}`} to="/login">로그인</Link>
+              <Link className={`auth-button ${isDarkMode ? 'dark-mode' : 'light-mode'}`} to="/signup">회원가입</Link>
             </>
           )}
+          <button className={`toggle-button ${isDarkMode ? 'dark-mode' : 'light-mode'}`} onClick={toggleDarkMode}>
+            {isDarkMode ? '라이트 모드' : '다크 모드'}
+          </button>
         </div>
       </div>
     </nav>

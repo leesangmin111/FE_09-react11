@@ -1,20 +1,19 @@
 import React from "react";
-import '../styles/App.scss'; // 상대 경로로 App.scss를 참조
-  // SCSS 파일 임포트
+import '../styles/App.scss';
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, isDarkMode }) => {
   return (
-    <div className="movie-card"> {/* SCSS 클래스로 변경 */}
+    <div className={`movie-card ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <img
         src={`${IMG_BASE_URL}${movie.poster_path}`}
         alt={movie.title}
-        className="movie-card-img" // SCSS 클래스에 맞게 변경
+        className="movie-card-img"
       />
-      <div>
-        <h3>{movie.title}</h3>
-        <p>⭐ {movie.vote_average}</p>
+      <div className={`movie-card-info ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+        <h3 className={`movie-title ${isDarkMode ? 'text-white' : 'text-black'}`}>{movie.title}</h3>
+        <p className={`movie-rating ${isDarkMode ? 'text-white' : 'text-black'}`}>⭐ {movie.vote_average}</p>
       </div>
     </div>
   );
